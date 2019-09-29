@@ -3,10 +3,10 @@
 
 using namespace std;
 
-int _main() {
+int main() {
 	NMManager T;
 	
-	T.n(100);
+	T.n(1000);
 
 	cout << "Hello" << endl;
 	system("pause");

@@ -7,8 +7,8 @@
 constexpr auto R = 10.0L;
 constexpr auto m = 10.0L;
 constexpr auto C0 = .01L;
-constexpr auto a1 = 100.0L;
-constexpr auto a2 = 1.01010101010101L;
+constexpr auto a1 = 99.0L;
+constexpr auto a2 = 1.0L;
 constexpr auto u0 = 0.0L;
 constexpr auto h0 = .01L;
 
@@ -19,13 +19,12 @@ typedef long double longd;
 
 longd FKoshi(longd t, longd C) {
 	longd p = powl(M_E, (-a1 / m * t));
-	longd u = ( a1 / a2 * C0 * p) / (1.0L - C0 * p);
+	longd u = (a1 / a2 * C * p) / (1.0L - C * p);
 	return u;
 }
 
 longd FKoshiC(longd u, longd t) {
 	longd p = powl(M_E, (a1 / m * t));
-
 	longd C = (u * p) / (a1 / a2 + u);
 
 	return C;
@@ -48,8 +47,8 @@ class NMManager {
 	vector<long double> aH;	// Шаг численного метода
 	vector<long double> aE;	// Локальные погрешности
 
-	double maxE = .0001L;	// Верхний предел локальной погрешности
-	double minE = .000001L;	// Нижний предел локальной погрешности
+	double maxE = .001L;		// Верхний предел локальной погрешности
+	double minE = .000003125L;	// Нижний предел локальной погрешности
 
 	longd constKoshi;		// C0 из НУ задачи Коши;
 
@@ -85,7 +84,7 @@ public:
 
 		longd _iu0 = 1;
 		longd _ix0 = 0;
-		longd _ih0 = .01L;
+		longd _ih0 = .1L;
 
 		function_koshi = FKoshi;
 		function = F;
@@ -93,10 +92,12 @@ public:
 
 		constKoshi = FKoshiC(_iu0, _ix0);
 
+		longd L = K(0);
+
 		aP.push_back(_ix0);	// x0
 		aU.push_back(_iu0);	// u0
 		aV.push_back(_iu0);	// u0
-		aH.push_back(h0);	// h0
+		aH.push_back(_ih0);	// h0
 		aE.push_back(0);	// Локальная погрешность изначально = 0
 
 		RK.setFunction(F);
