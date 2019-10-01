@@ -1,4 +1,6 @@
 #pragma once
+#include "NMManager.h"
+#include <math.h>
 
 namespace Lab3NM {
 
@@ -8,6 +10,8 @@ namespace Lab3NM {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace ZedGraph;
+
 
 	/// <summary>
 	/// —‚Ó‰Í‡ ‰Îˇ Content
@@ -107,34 +111,30 @@ namespace Lab3NM {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Content::typeid));
 			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Content::typeid));
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->pageNav = (gcnew System::Windows::Forms::TabControl());
 			this->pageNav_p1 = (gcnew System::Windows::Forms::TabPage());
-			this->pageNav_p2 = (gcnew System::Windows::Forms::TabPage());
-			this->topMenu = (gcnew System::Windows::Forms::MenuStrip());
-			this->topMenu_i1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->ÓÚÍ˚Ú¸«‡‰‡˜ÛToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->topMenu_i2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->TaskGroupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->pictureTask = (gcnew System::Windows::Forms::PictureBox());
-			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->GraphChart = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
-			this->SolveListGroupBox = (gcnew System::Windows::Forms::GroupBox());
-			this->SolveAddBtn = (gcnew System::Windows::Forms::Button());
-			this->SolveDelBtn = (gcnew System::Windows::Forms::Button());
-			this->SolveEditBtn = (gcnew System::Windows::Forms::Button());
 			this->SettingsGroupBox = (gcnew System::Windows::Forms::GroupBox());
 			this->SolveBtn = (gcnew System::Windows::Forms::Button());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->SolveListGroupBox = (gcnew System::Windows::Forms::GroupBox());
 			this->SolveGrid = (gcnew System::Windows::Forms::DataGridView());
 			this->const_var_x = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->const_var_u = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->SolveEditBtn = (gcnew System::Windows::Forms::Button());
+			this->SolveDelBtn = (gcnew System::Windows::Forms::Button());
+			this->SolveAddBtn = (gcnew System::Windows::Forms::Button());
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->GraphChart = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->pictureTask = (gcnew System::Windows::Forms::PictureBox());
+			this->pageNav_p2 = (gcnew System::Windows::Forms::TabPage());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->col0 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->col1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->col2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -142,18 +142,22 @@ namespace Lab3NM {
 			this->col4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->col5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->col6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->topMenu = (gcnew System::Windows::Forms::MenuStrip());
+			this->topMenu_i1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ÓÚÍ˚Ú¸«‡‰‡˜ÛToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->topMenu_i2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->pageNav->SuspendLayout();
 			this->pageNav_p1->SuspendLayout();
-			this->pageNav_p2->SuspendLayout();
-			this->topMenu->SuspendLayout();
 			this->TaskGroupBox->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureTask))->BeginInit();
+			this->SettingsGroupBox->SuspendLayout();
+			this->SolveListGroupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SolveGrid))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->GraphChart))->BeginInit();
-			this->SolveListGroupBox->SuspendLayout();
-			this->SettingsGroupBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureTask))->BeginInit();
+			this->pageNav_p2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SolveGrid))->BeginInit();
+			this->topMenu->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// pageNav
@@ -182,45 +186,6 @@ namespace Lab3NM {
 			this->pageNav_p1->Text = L"œ‡ÌÂÎ¸ ÛÔ‡‚ÎÂÌËˇ";
 			this->pageNav_p1->UseVisualStyleBackColor = true;
 			// 
-			// pageNav_p2
-			// 
-			this->pageNav_p2->Controls->Add(this->dataGridView1);
-			this->pageNav_p2->Location = System::Drawing::Point(4, 22);
-			this->pageNav_p2->Name = L"pageNav_p2";
-			this->pageNav_p2->Padding = System::Windows::Forms::Padding(3);
-			this->pageNav_p2->Size = System::Drawing::Size(872, 410);
-			this->pageNav_p2->TabIndex = 1;
-			this->pageNav_p2->Text = L"“‡·ÎËˆ‡";
-			this->pageNav_p2->UseVisualStyleBackColor = true;
-			// 
-			// topMenu
-			// 
-			this->topMenu->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) { this->topMenu_i1, this->topMenu_i2 });
-			this->topMenu->Location = System::Drawing::Point(0, 0);
-			this->topMenu->Name = L"topMenu";
-			this->topMenu->Size = System::Drawing::Size(880, 24);
-			this->topMenu->TabIndex = 1;
-			this->topMenu->Text = L"menuStrip1";
-			// 
-			// topMenu_i1
-			// 
-			this->topMenu_i1->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->ÓÚÍ˚Ú¸«‡‰‡˜ÛToolStripMenuItem });
-			this->topMenu_i1->Name = L"topMenu_i1";
-			this->topMenu_i1->Size = System::Drawing::Size(48, 20);
-			this->topMenu_i1->Text = L"‘‡ÈÎ";
-			// 
-			// ÓÚÍ˚Ú¸«‡‰‡˜ÛToolStripMenuItem
-			// 
-			this->ÓÚÍ˚Ú¸«‡‰‡˜ÛToolStripMenuItem->Name = L"ÓÚÍ˚Ú¸«‡‰‡˜ÛToolStripMenuItem";
-			this->ÓÚÍ˚Ú¸«‡‰‡˜ÛToolStripMenuItem->Size = System::Drawing::Size(180, 22);
-			this->ÓÚÍ˚Ú¸«‡‰‡˜ÛToolStripMenuItem->Text = L"ŒÚÍ˚Ú¸ Á‡‰‡˜Û";
-			// 
-			// topMenu_i2
-			// 
-			this->topMenu_i2->Name = L"topMenu_i2";
-			this->topMenu_i2->Size = System::Drawing::Size(65, 20);
-			this->topMenu_i2->Text = L"—Ô‡‚Í‡";
-			// 
 			// TaskGroupBox
 			// 
 			this->TaskGroupBox->AutoSize = true;
@@ -236,90 +201,6 @@ namespace Lab3NM {
 			this->TaskGroupBox->TabIndex = 0;
 			this->TaskGroupBox->TabStop = false;
 			this->TaskGroupBox->Text = L"Õ‡Á‚‡ÌËÂ Á‡‰‡˜Ë";
-			// 
-			// pictureTask
-			// 
-			this->pictureTask->BackColor = System::Drawing::Color::Maroon;
-			this->pictureTask->Location = System::Drawing::Point(6, 19);
-			this->pictureTask->Name = L"pictureTask";
-			this->pictureTask->Size = System::Drawing::Size(171, 90);
-			this->pictureTask->TabIndex = 0;
-			this->pictureTask->TabStop = false;
-			// 
-			// groupBox1
-			// 
-			this->groupBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->groupBox1->Controls->Add(this->GraphChart);
-			this->groupBox1->Location = System::Drawing::Point(483, 13);
-			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(377, 385);
-			this->groupBox1->TabIndex = 1;
-			this->groupBox1->TabStop = false;
-			this->groupBox1->Text = L"√‡ÙËÍ";
-			// 
-			// GraphChart
-			// 
-			chartArea1->Name = L"ChartArea1";
-			this->GraphChart->ChartAreas->Add(chartArea1);
-			this->GraphChart->Dock = System::Windows::Forms::DockStyle::Fill;
-			legend1->Docking = System::Windows::Forms::DataVisualization::Charting::Docking::Bottom;
-			legend1->LegendStyle = System::Windows::Forms::DataVisualization::Charting::LegendStyle::Row;
-			legend1->Name = L"Legend1";
-			this->GraphChart->Legends->Add(legend1);
-			this->GraphChart->Location = System::Drawing::Point(3, 16);
-			this->GraphChart->Name = L"GraphChart";
-			series1->ChartArea = L"ChartArea1";
-			series1->Legend = L"Legend1";
-			series1->Name = L"Series1";
-			this->GraphChart->Series->Add(series1);
-			this->GraphChart->Size = System::Drawing::Size(371, 366);
-			this->GraphChart->TabIndex = 0;
-			// 
-			// SolveListGroupBox
-			// 
-			this->SolveListGroupBox->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->SolveListGroupBox->Controls->Add(this->SolveGrid);
-			this->SolveListGroupBox->Controls->Add(this->SolveEditBtn);
-			this->SolveListGroupBox->Controls->Add(this->SolveDelBtn);
-			this->SolveListGroupBox->Controls->Add(this->SolveAddBtn);
-			this->SolveListGroupBox->Location = System::Drawing::Point(6, 115);
-			this->SolveListGroupBox->Name = L"SolveListGroupBox";
-			this->SolveListGroupBox->Size = System::Drawing::Size(114, 280);
-			this->SolveListGroupBox->TabIndex = 2;
-			this->SolveListGroupBox->TabStop = false;
-			this->SolveListGroupBox->Text = L"“‡·ÎËˆ‡ Õ.”.";
-			// 
-			// SolveAddBtn
-			// 
-			this->SolveAddBtn->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->SolveAddBtn->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
-			this->SolveAddBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"SolveAddBtn.Image")));
-			this->SolveAddBtn->Location = System::Drawing::Point(6, 244);
-			this->SolveAddBtn->Name = L"SolveAddBtn";
-			this->SolveAddBtn->Size = System::Drawing::Size(30, 30);
-			this->SolveAddBtn->TabIndex = 0;
-			this->SolveAddBtn->UseVisualStyleBackColor = true;
-			// 
-			// SolveDelBtn
-			// 
-			this->SolveDelBtn->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->SolveDelBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"SolveDelBtn.Image")));
-			this->SolveDelBtn->Location = System::Drawing::Point(78, 244);
-			this->SolveDelBtn->Name = L"SolveDelBtn";
-			this->SolveDelBtn->Size = System::Drawing::Size(30, 30);
-			this->SolveDelBtn->TabIndex = 1;
-			this->SolveDelBtn->UseVisualStyleBackColor = true;
-			// 
-			// SolveEditBtn
-			// 
-			this->SolveEditBtn->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->SolveEditBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"SolveEditBtn.Image")));
-			this->SolveEditBtn->Location = System::Drawing::Point(42, 244);
-			this->SolveEditBtn->Name = L"SolveEditBtn";
-			this->SolveEditBtn->Size = System::Drawing::Size(30, 30);
-			this->SolveEditBtn->TabIndex = 2;
-			this->SolveEditBtn->UseVisualStyleBackColor = true;
 			// 
 			// SettingsGroupBox
 			// 
@@ -339,21 +220,21 @@ namespace Lab3NM {
 			this->SolveBtn->TabIndex = 0;
 			this->SolveBtn->Text = L"œÓÒÚÓËÚ¸";
 			this->SolveBtn->UseVisualStyleBackColor = true;
+			this->SolveBtn->Click += gcnew System::EventHandler(this, &Content::SolveBtn_Click);
 			// 
-			// dataGridView1
+			// SolveListGroupBox
 			// 
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
-				this->col0, this->col1,
-					this->col2, this->col3, this->col4, this->col5, this->col6
-			});
-			this->dataGridView1->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->dataGridView1->Location = System::Drawing::Point(3, 3);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->ReadOnly = true;
-			this->dataGridView1->RowHeadersVisible = false;
-			this->dataGridView1->Size = System::Drawing::Size(866, 404);
-			this->dataGridView1->TabIndex = 0;
+			this->SolveListGroupBox->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->SolveListGroupBox->Controls->Add(this->SolveGrid);
+			this->SolveListGroupBox->Controls->Add(this->SolveEditBtn);
+			this->SolveListGroupBox->Controls->Add(this->SolveDelBtn);
+			this->SolveListGroupBox->Controls->Add(this->SolveAddBtn);
+			this->SolveListGroupBox->Location = System::Drawing::Point(6, 115);
+			this->SolveListGroupBox->Name = L"SolveListGroupBox";
+			this->SolveListGroupBox->Size = System::Drawing::Size(114, 280);
+			this->SolveListGroupBox->TabIndex = 2;
+			this->SolveListGroupBox->TabStop = false;
+			this->SolveListGroupBox->Text = L"“‡·ÎËˆ‡ Õ.”.";
 			// 
 			// SolveGrid
 			// 
@@ -410,6 +291,102 @@ namespace Lab3NM {
 			this->const_var_u->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
 			this->const_var_u->Width = 53;
 			// 
+			// SolveEditBtn
+			// 
+			this->SolveEditBtn->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->SolveEditBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"SolveEditBtn.Image")));
+			this->SolveEditBtn->Location = System::Drawing::Point(42, 244);
+			this->SolveEditBtn->Name = L"SolveEditBtn";
+			this->SolveEditBtn->Size = System::Drawing::Size(30, 30);
+			this->SolveEditBtn->TabIndex = 2;
+			this->SolveEditBtn->UseVisualStyleBackColor = true;
+			// 
+			// SolveDelBtn
+			// 
+			this->SolveDelBtn->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->SolveDelBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"SolveDelBtn.Image")));
+			this->SolveDelBtn->Location = System::Drawing::Point(78, 244);
+			this->SolveDelBtn->Name = L"SolveDelBtn";
+			this->SolveDelBtn->Size = System::Drawing::Size(30, 30);
+			this->SolveDelBtn->TabIndex = 1;
+			this->SolveDelBtn->UseVisualStyleBackColor = true;
+			// 
+			// SolveAddBtn
+			// 
+			this->SolveAddBtn->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->SolveAddBtn->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->SolveAddBtn->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"SolveAddBtn.Image")));
+			this->SolveAddBtn->Location = System::Drawing::Point(6, 244);
+			this->SolveAddBtn->Name = L"SolveAddBtn";
+			this->SolveAddBtn->Size = System::Drawing::Size(30, 30);
+			this->SolveAddBtn->TabIndex = 0;
+			this->SolveAddBtn->UseVisualStyleBackColor = true;
+			// 
+			// groupBox1
+			// 
+			this->groupBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->groupBox1->Controls->Add(this->GraphChart);
+			this->groupBox1->Location = System::Drawing::Point(483, 13);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(377, 385);
+			this->groupBox1->TabIndex = 1;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"√‡ÙËÍ";
+			// 
+			// GraphChart
+			// 
+			chartArea1->Name = L"ChartArea1";
+			this->GraphChart->ChartAreas->Add(chartArea1);
+			this->GraphChart->Dock = System::Windows::Forms::DockStyle::Fill;
+			legend1->Docking = System::Windows::Forms::DataVisualization::Charting::Docking::Bottom;
+			legend1->LegendStyle = System::Windows::Forms::DataVisualization::Charting::LegendStyle::Row;
+			legend1->Name = L"Legend1";
+			this->GraphChart->Legends->Add(legend1);
+			this->GraphChart->Location = System::Drawing::Point(3, 16);
+			this->GraphChart->Name = L"GraphChart";
+			series1->ChartArea = L"ChartArea1";
+			series1->Legend = L"Legend1";
+			series1->Name = L"Series1";
+			this->GraphChart->Series->Add(series1);
+			this->GraphChart->Size = System::Drawing::Size(371, 366);
+			this->GraphChart->TabIndex = 0;
+			// 
+			// pictureTask
+			// 
+			this->pictureTask->BackColor = System::Drawing::Color::Maroon;
+			this->pictureTask->Location = System::Drawing::Point(6, 19);
+			this->pictureTask->Name = L"pictureTask";
+			this->pictureTask->Size = System::Drawing::Size(171, 90);
+			this->pictureTask->TabIndex = 0;
+			this->pictureTask->TabStop = false;
+			// 
+			// pageNav_p2
+			// 
+			this->pageNav_p2->Controls->Add(this->dataGridView1);
+			this->pageNav_p2->Location = System::Drawing::Point(4, 22);
+			this->pageNav_p2->Name = L"pageNav_p2";
+			this->pageNav_p2->Padding = System::Windows::Forms::Padding(3);
+			this->pageNav_p2->Size = System::Drawing::Size(872, 410);
+			this->pageNav_p2->TabIndex = 1;
+			this->pageNav_p2->Text = L"“‡·ÎËˆ‡";
+			this->pageNav_p2->UseVisualStyleBackColor = true;
+			// 
+			// dataGridView1
+			// 
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
+				this->col0, this->col1,
+					this->col2, this->col3, this->col4, this->col5, this->col6
+			});
+			this->dataGridView1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->dataGridView1->Location = System::Drawing::Point(3, 3);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->ReadOnly = true;
+			this->dataGridView1->RowHeadersVisible = false;
+			this->dataGridView1->Size = System::Drawing::Size(866, 404);
+			this->dataGridView1->TabIndex = 0;
+			// 
 			// col0
 			// 
 			this->col0->HeaderText = L"i";
@@ -452,6 +429,34 @@ namespace Lab3NM {
 			this->col6->Name = L"col6";
 			this->col6->ReadOnly = true;
 			// 
+			// topMenu
+			// 
+			this->topMenu->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) { this->topMenu_i1, this->topMenu_i2 });
+			this->topMenu->Location = System::Drawing::Point(0, 0);
+			this->topMenu->Name = L"topMenu";
+			this->topMenu->Size = System::Drawing::Size(880, 24);
+			this->topMenu->TabIndex = 1;
+			this->topMenu->Text = L"menuStrip1";
+			// 
+			// topMenu_i1
+			// 
+			this->topMenu_i1->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->ÓÚÍ˚Ú¸«‡‰‡˜ÛToolStripMenuItem });
+			this->topMenu_i1->Name = L"topMenu_i1";
+			this->topMenu_i1->Size = System::Drawing::Size(48, 20);
+			this->topMenu_i1->Text = L"‘‡ÈÎ";
+			// 
+			// ÓÚÍ˚Ú¸«‡‰‡˜ÛToolStripMenuItem
+			// 
+			this->ÓÚÍ˚Ú¸«‡‰‡˜ÛToolStripMenuItem->Name = L"ÓÚÍ˚Ú¸«‡‰‡˜ÛToolStripMenuItem";
+			this->ÓÚÍ˚Ú¸«‡‰‡˜ÛToolStripMenuItem->Size = System::Drawing::Size(160, 22);
+			this->ÓÚÍ˚Ú¸«‡‰‡˜ÛToolStripMenuItem->Text = L"ŒÚÍ˚Ú¸ Á‡‰‡˜Û";
+			// 
+			// topMenu_i2
+			// 
+			this->topMenu_i2->Name = L"topMenu_i2";
+			this->topMenu_i2->Size = System::Drawing::Size(65, 20);
+			this->topMenu_i2->Text = L"—Ô‡‚Í‡";
+			// 
 			// Content
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -464,21 +469,38 @@ namespace Lab3NM {
 			this->pageNav->ResumeLayout(false);
 			this->pageNav_p1->ResumeLayout(false);
 			this->pageNav_p1->PerformLayout();
-			this->pageNav_p2->ResumeLayout(false);
-			this->topMenu->ResumeLayout(false);
-			this->topMenu->PerformLayout();
 			this->TaskGroupBox->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureTask))->EndInit();
+			this->SettingsGroupBox->ResumeLayout(false);
+			this->SolveListGroupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SolveGrid))->EndInit();
 			this->groupBox1->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->GraphChart))->EndInit();
-			this->SolveListGroupBox->ResumeLayout(false);
-			this->SettingsGroupBox->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureTask))->EndInit();
+			this->pageNav_p2->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SolveGrid))->EndInit();
+			this->topMenu->ResumeLayout(false);
+			this->topMenu->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	};
+	private: System::Void SolveBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		NMManager T;
+
+		T.Build(100);
+
+		vector<longd> points = T.getPoints();
+		vector<longd> method = T.getMethod();
+		vector<longd> exacts = T.getExact();
+
+		/*
+		//GraphPane^ panel = GraphChart->;
+		panel->CurveList->Clear();
+		PointPairList^ f1_list = gcnew ZedGraph::PointPairList();
+		PointPairList^ f2_list = gcnew ZedGraph::PointPairList();
+		*/
+	}
+};
 }

@@ -6,7 +6,7 @@ using namespace std;
 int main() {
 	NMManager T;
 	
-	T.n(1000);
+	T.Build(1000);
 
 	cout << "Hello" << endl;
 	system("pause");
