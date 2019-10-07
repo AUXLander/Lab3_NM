@@ -1,6 +1,6 @@
 #pragma once
-#include "NMManager.h"
 #include <math.h>
+#include "NMManager.h"
 
 namespace Lab3NM {
 
@@ -10,8 +10,6 @@ namespace Lab3NM {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace ZedGraph;
-
 
 	/// <summary>
 	/// Сводка для Content
@@ -50,7 +48,8 @@ namespace Lab3NM {
 	private: System::Windows::Forms::GroupBox^ TaskGroupBox;
 	private: System::Windows::Forms::GroupBox^ groupBox1;
 	private: System::Windows::Forms::PictureBox^ pictureTask;
-	private: System::Windows::Forms::DataVisualization::Charting::Chart^ GraphChart;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^ mainChart;
+
 	private: System::Windows::Forms::GroupBox^ SolveListGroupBox;
 	private: System::Windows::Forms::Button^ SolveEditBtn;
 	private: System::Windows::Forms::Button^ SolveDelBtn;
@@ -73,6 +72,14 @@ namespace Lab3NM {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ col4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ col5;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ col6;
+	private: System::Windows::Forms::GroupBox^ groupBox2;
+	private: System::Windows::Forms::TextBox^ editNCount;
+	private: System::Windows::Forms::GroupBox^ groupBox3;
+	private: System::Windows::Forms::CheckBox^ checkExact;
+	private: System::Windows::Forms::CheckBox^ checkDiff;
+	private: System::Windows::Forms::CheckBox^ checkCorrection;
+
+
 
 
 
@@ -121,8 +128,13 @@ namespace Lab3NM {
 			this->pageNav = (gcnew System::Windows::Forms::TabControl());
 			this->pageNav_p1 = (gcnew System::Windows::Forms::TabPage());
 			this->TaskGroupBox = (gcnew System::Windows::Forms::GroupBox());
+			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
+			this->checkExact = (gcnew System::Windows::Forms::CheckBox());
+			this->checkDiff = (gcnew System::Windows::Forms::CheckBox());
 			this->SettingsGroupBox = (gcnew System::Windows::Forms::GroupBox());
 			this->SolveBtn = (gcnew System::Windows::Forms::Button());
+			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
+			this->editNCount = (gcnew System::Windows::Forms::TextBox());
 			this->SolveListGroupBox = (gcnew System::Windows::Forms::GroupBox());
 			this->SolveGrid = (gcnew System::Windows::Forms::DataGridView());
 			this->const_var_x = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -131,7 +143,7 @@ namespace Lab3NM {
 			this->SolveDelBtn = (gcnew System::Windows::Forms::Button());
 			this->SolveAddBtn = (gcnew System::Windows::Forms::Button());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->GraphChart = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->mainChart = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->pictureTask = (gcnew System::Windows::Forms::PictureBox());
 			this->pageNav_p2 = (gcnew System::Windows::Forms::TabPage());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
@@ -146,14 +158,17 @@ namespace Lab3NM {
 			this->topMenu_i1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->открытьЗадачуToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->topMenu_i2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->checkCorrection = (gcnew System::Windows::Forms::CheckBox());
 			this->pageNav->SuspendLayout();
 			this->pageNav_p1->SuspendLayout();
 			this->TaskGroupBox->SuspendLayout();
+			this->groupBox3->SuspendLayout();
 			this->SettingsGroupBox->SuspendLayout();
+			this->groupBox2->SuspendLayout();
 			this->SolveListGroupBox->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SolveGrid))->BeginInit();
 			this->groupBox1->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->GraphChart))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->mainChart))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureTask))->BeginInit();
 			this->pageNav_p2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -189,6 +204,7 @@ namespace Lab3NM {
 			// TaskGroupBox
 			// 
 			this->TaskGroupBox->AutoSize = true;
+			this->TaskGroupBox->Controls->Add(this->groupBox3);
 			this->TaskGroupBox->Controls->Add(this->SettingsGroupBox);
 			this->TaskGroupBox->Controls->Add(this->SolveListGroupBox);
 			this->TaskGroupBox->Controls->Add(this->groupBox1);
@@ -202,9 +218,46 @@ namespace Lab3NM {
 			this->TaskGroupBox->TabStop = false;
 			this->TaskGroupBox->Text = L"Название задачи";
 			// 
+			// groupBox3
+			// 
+			this->groupBox3->Controls->Add(this->checkCorrection);
+			this->groupBox3->Controls->Add(this->checkExact);
+			this->groupBox3->Controls->Add(this->checkDiff);
+			this->groupBox3->Location = System::Drawing::Point(207, 13);
+			this->groupBox3->Name = L"groupBox3";
+			this->groupBox3->Size = System::Drawing::Size(270, 97);
+			this->groupBox3->TabIndex = 4;
+			this->groupBox3->TabStop = false;
+			this->groupBox3->Text = L"Отображение";
+			// 
+			// checkExact
+			// 
+			this->checkExact->AutoSize = true;
+			this->checkExact->Checked = true;
+			this->checkExact->CheckState = System::Windows::Forms::CheckState::Checked;
+			this->checkExact->Location = System::Drawing::Point(6, 35);
+			this->checkExact->Name = L"checkExact";
+			this->checkExact->Size = System::Drawing::Size(62, 17);
+			this->checkExact->TabIndex = 1;
+			this->checkExact->Text = L"Точное";
+			this->checkExact->UseVisualStyleBackColor = true;
+			// 
+			// checkDiff
+			// 
+			this->checkDiff->AutoSize = true;
+			this->checkDiff->Checked = true;
+			this->checkDiff->CheckState = System::Windows::Forms::CheckState::Checked;
+			this->checkDiff->Location = System::Drawing::Point(6, 19);
+			this->checkDiff->Name = L"checkDiff";
+			this->checkDiff->Size = System::Drawing::Size(102, 17);
+			this->checkDiff->TabIndex = 0;
+			this->checkDiff->Text = L"Приближенное";
+			this->checkDiff->UseVisualStyleBackColor = true;
+			// 
 			// SettingsGroupBox
 			// 
 			this->SettingsGroupBox->Controls->Add(this->SolveBtn);
+			this->SettingsGroupBox->Controls->Add(this->groupBox2);
 			this->SettingsGroupBox->Location = System::Drawing::Point(126, 115);
 			this->SettingsGroupBox->Name = L"SettingsGroupBox";
 			this->SettingsGroupBox->Size = System::Drawing::Size(351, 280);
@@ -221,6 +274,25 @@ namespace Lab3NM {
 			this->SolveBtn->Text = L"Построить";
 			this->SolveBtn->UseVisualStyleBackColor = true;
 			this->SolveBtn->Click += gcnew System::EventHandler(this, &Content::SolveBtn_Click);
+			// 
+			// groupBox2
+			// 
+			this->groupBox2->Controls->Add(this->editNCount);
+			this->groupBox2->Location = System::Drawing::Point(212, 16);
+			this->groupBox2->Name = L"groupBox2";
+			this->groupBox2->Size = System::Drawing::Size(133, 48);
+			this->groupBox2->TabIndex = 3;
+			this->groupBox2->TabStop = false;
+			this->groupBox2->Text = L"Количество итераций:";
+			// 
+			// editNCount
+			// 
+			this->editNCount->Location = System::Drawing::Point(6, 19);
+			this->editNCount->Name = L"editNCount";
+			this->editNCount->Size = System::Drawing::Size(121, 20);
+			this->editNCount->TabIndex = 2;
+			this->editNCount->Text = L"1000";
+			this->editNCount->WordWrap = false;
 			// 
 			// SolveListGroupBox
 			// 
@@ -326,7 +398,7 @@ namespace Lab3NM {
 			// 
 			this->groupBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->groupBox1->Controls->Add(this->GraphChart);
+			this->groupBox1->Controls->Add(this->mainChart);
 			this->groupBox1->Location = System::Drawing::Point(483, 13);
 			this->groupBox1->Name = L"groupBox1";
 			this->groupBox1->Size = System::Drawing::Size(377, 385);
@@ -334,30 +406,30 @@ namespace Lab3NM {
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"График";
 			// 
-			// GraphChart
+			// mainChart
 			// 
 			chartArea1->Name = L"ChartArea1";
-			this->GraphChart->ChartAreas->Add(chartArea1);
-			this->GraphChart->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->mainChart->ChartAreas->Add(chartArea1);
+			this->mainChart->Dock = System::Windows::Forms::DockStyle::Fill;
 			legend1->Docking = System::Windows::Forms::DataVisualization::Charting::Docking::Bottom;
 			legend1->LegendStyle = System::Windows::Forms::DataVisualization::Charting::LegendStyle::Row;
 			legend1->Name = L"Legend1";
-			this->GraphChart->Legends->Add(legend1);
-			this->GraphChart->Location = System::Drawing::Point(3, 16);
-			this->GraphChart->Name = L"GraphChart";
+			this->mainChart->Legends->Add(legend1);
+			this->mainChart->Location = System::Drawing::Point(3, 16);
+			this->mainChart->Name = L"mainChart";
 			series1->ChartArea = L"ChartArea1";
 			series1->Legend = L"Legend1";
 			series1->Name = L"Series1";
-			this->GraphChart->Series->Add(series1);
-			this->GraphChart->Size = System::Drawing::Size(371, 366);
-			this->GraphChart->TabIndex = 0;
+			this->mainChart->Series->Add(series1);
+			this->mainChart->Size = System::Drawing::Size(371, 366);
+			this->mainChart->TabIndex = 0;
 			// 
 			// pictureTask
 			// 
 			this->pictureTask->BackColor = System::Drawing::Color::Maroon;
 			this->pictureTask->Location = System::Drawing::Point(6, 19);
 			this->pictureTask->Name = L"pictureTask";
-			this->pictureTask->Size = System::Drawing::Size(171, 90);
+			this->pictureTask->Size = System::Drawing::Size(195, 90);
 			this->pictureTask->TabIndex = 0;
 			this->pictureTask->TabStop = false;
 			// 
@@ -457,6 +529,16 @@ namespace Lab3NM {
 			this->topMenu_i2->Size = System::Drawing::Size(65, 20);
 			this->topMenu_i2->Text = L"Справка";
 			// 
+			// checkCorrection
+			// 
+			this->checkCorrection->AutoSize = true;
+			this->checkCorrection->Location = System::Drawing::Point(6, 50);
+			this->checkCorrection->Name = L"checkCorrection";
+			this->checkCorrection->Size = System::Drawing::Size(132, 17);
+			this->checkCorrection->TabIndex = 2;
+			this->checkCorrection->Text = L"Корректировка шага";
+			this->checkCorrection->UseVisualStyleBackColor = true;
+			// 
 			// Content
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -466,15 +548,20 @@ namespace Lab3NM {
 			this->Controls->Add(this->topMenu);
 			this->Name = L"Content";
 			this->Text = L"Content";
+			this->Load += gcnew System::EventHandler(this, &Content::Content_Load);
 			this->pageNav->ResumeLayout(false);
 			this->pageNav_p1->ResumeLayout(false);
 			this->pageNav_p1->PerformLayout();
 			this->TaskGroupBox->ResumeLayout(false);
+			this->groupBox3->ResumeLayout(false);
+			this->groupBox3->PerformLayout();
 			this->SettingsGroupBox->ResumeLayout(false);
+			this->groupBox2->ResumeLayout(false);
+			this->groupBox2->PerformLayout();
 			this->SolveListGroupBox->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->SolveGrid))->EndInit();
 			this->groupBox1->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->GraphChart))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->mainChart))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureTask))->EndInit();
 			this->pageNav_p2->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -489,18 +576,62 @@ namespace Lab3NM {
 
 		NMManager T;
 
-		T.Build(100);
+		size_t NCount = Convert::ToInt32(Content::editNCount->Text);
+
+		bool chDiff		= Convert::ToBoolean(Content::checkDiff->Checked);
+		bool chExact	= Convert::ToBoolean(Content::checkExact->Checked);
+		bool chCorrect	= Convert::ToBoolean(Content::checkCorrection->Checked);
+
+		
+		T.turnCorrectionControl(chCorrect);
+		T.setStartData(0, .1, 0, 1);
+		T.setMode(1);
+	
+		T.Build(NCount, 1);
+		
+
 
 		vector<longd> points = T.getPoints();
 		vector<longd> method = T.getMethod();
 		vector<longd> exacts = T.getExact();
 
-		/*
-		//GraphPane^ panel = GraphChart->;
-		panel->CurveList->Clear();
-		PointPairList^ f1_list = gcnew ZedGraph::PointPairList();
-		PointPairList^ f2_list = gcnew ZedGraph::PointPairList();
-		*/
+		Content::mainChart->Series["Diff"]->Points->Clear();
+		Content::mainChart->Series["Exact"]->Points->Clear();
+
+		Content::mainChart->ChartAreas[0]->AxisX->Maximum = ceil(T.XMax());
+		Content::mainChart->ChartAreas[0]->AxisY->Maximum = ceil(std::fmax(T.YExactMax(), T.YMethodMax()));
+
+		size_t i = 0;
+		for (auto point : points) {
+			if (chDiff) { 
+				Content::mainChart->Series["Diff"]->Points->AddXY(point, method[i]);
+			}
+			if (chExact) {
+				Content::mainChart->Series["Exact"]->Points->AddXY(point, exacts[i]);
+			}
+			i++;
+		}
 	}
+private: System::Void Content_Load(System::Object^ sender, System::EventArgs^ e) {
+
+	Content::mainChart->ChartAreas[0]->AxisX->Minimum = 0;
+	Content::mainChart->ChartAreas[0]->AxisX->Maximum = 10;
+
+	Content::mainChart->ChartAreas[0]->AxisY->Minimum = -.1;
+	Content::mainChart->ChartAreas[0]->AxisY->Maximum = 10;
+
+	Content::mainChart->Legends->Clear();
+	Content::mainChart->Series->Clear();
+
+	auto diff = Content::mainChart->Series->Add("Diff");
+	diff->ChartType = DataVisualization::Charting::SeriesChartType::Line;
+
+	auto l_diff = Content::mainChart->Legends->Add("Diff");
+
+	auto exact = Content::mainChart->Series->Add("Exact");
+	exact->ChartType = DataVisualization::Charting::SeriesChartType::Line;
+
+	auto l_exact = Content::mainChart->Legends->Add("Exact");
+}
 };
 }

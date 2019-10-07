@@ -6,6 +6,8 @@ using namespace std;
 constexpr auto defPoint = -19262454.937311;
 constexpr auto defValue = -92132454.134111;
 
+longd function(longd x, longd u);
+
 class RK4 {
 	longd(*function)(longd, longd);
 	void checkFunction(longd(*userfunction)(longd, longd)) {
@@ -29,7 +31,7 @@ public:
 		return point;
 	}
 
-	double nextValue(longd _Point, longd _Value, longd _H, longd(*f)(longd, longd) = nullptr) {
+	longd nextValue(longd _Point, longd _Value, longd _H, longd(*f)(longd, longd) = nullptr) {
 		if (*f == nullptr) {
 			f = function;
 		}

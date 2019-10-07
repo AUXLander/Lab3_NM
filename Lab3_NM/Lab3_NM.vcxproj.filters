@@ -32,5 +32,8 @@
     <ClInclude Include="NMManager.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="ToolSet.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

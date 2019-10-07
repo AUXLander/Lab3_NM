@@ -1,3 +1,5 @@
-﻿  Test.cpp
+﻿  Content.cpp
+D:\Visual Studio\Projects\Lab3_NM\Lab3_NM\NMManager.h(200,1): warning C4244:  +=: преобразование "longd" в "size_t", возможна потеря данных
+D:\Visual Studio\Projects\Lab3_NM\Lab3_NM\NMManager.h(203,1): warning C4244:  +=: преобразование "longd" в "size_t", возможна потеря данных
   Content.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   Lab3_NM.vcxproj -> D:\Visual Studio\Projects\Lab3_NM\x64\Debug\Lab3_NM.exe
